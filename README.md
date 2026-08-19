@@ -1,16 +1,102 @@
-# React + Vite
+# 🎬 FILMACINE
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación web de películas construida con React y la API de TMDB. Permite explorar películas populares del momento, ver qué está actualmente en cartelera, ver próximos estrenos, buscar títulos, consultar información detallada (reparto, sinopsis, tráiler) y guardar favoritos con persistencia local.
 
-Currently, two official plugins are available:
+**🔗 Demo en vivo:** [buscador-peliculas-theta.vercel.app](https://buscador-peliculas-theta.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 📸 Capturas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Página de inicio
+![Página de inicio](./screenshots/home.png)
 
-## Expanding the Oxlint configuration
+### Detalle de película
+![Detalle de película](./screenshots/detalle.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Favoritos
+![Favoritos](./screenshots/favoritos.png)
+
+---
+
+## ⚙️ Funcionalidades
+
+- 🔐 **Autenticación** de usuario para acceder al contenido de la app
+- 🎞️ **Películas populares**, **en cartelera** y **próximos estrenos** (filtradas por región España)
+- 🔍 **Buscador** de películas por título, con página de resultados propia
+- 📄 **Página de detalle** con sinopsis, reparto y tráiler embebido (con fallback automático a inglés si no hay tráiler en español)
+- ⭐ **Favoritos** con persistencia en `localStorage` — se mantienen aunque cierres el navegador
+- 📱 **Diseño responsive**, adaptado a móvil, tablet y escritorio
+
+---
+
+## 🛠️ Tecnologías
+
+| Tecnología | Uso |
+|---|---|
+| **React** | Librería principal para la interfaz |
+| **React Router** | Navegación y rutas (incluye `useSearchParams` para el buscador) |
+| **Context API** | Gestión de estado global (autenticación y favoritos) |
+| **Tailwind CSS** | Estilos y diseño responsive |
+| **TMDB API** | Fuente de datos de películas |
+| **Vercel** | Despliegue |
+
+---
+
+## 📂 Estructura del proyecto
+
+```
+src/
+├── components/     # Componentes reutilizables (ListarPeliculas, Navbar, Footer...)
+├── pages/          # Páginas / vistas (Inicio, EnCartelera, Proximamente, Buscar, Favoritos, Detalle...)
+├── context/         # Context API (AuthContext, FavoritosContext)
+├── services/        # Llamadas a la API de TMDB
+```
+
+---
+
+## 🚀 Instalación local
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/abrahamquiros/buscador-peliculas.git
+cd buscador-peliculas
+```
+
+2. Instala las dependencias:
+```bash
+npm install
+```
+
+3. Crea un archivo `.env` en la raíz del proyecto con tu API key de TMDB:
+```
+VITE_API_KEY=tu_api_key_de_tmdb
+```
+Puedes conseguir una API key gratuita registrándote en [themoviedb.org](https://www.themoviedb.org/documentation/api).
+
+4. Arranca el proyecto:
+```bash
+npm run dev
+```
+
+---
+
+## 🗺️ Próximas mejoras
+
+- [ ] Filtro de películas por género
+- [ ] Paginación en los listados
+
+---
+
+## 📄 Créditos
+
+Datos e imágenes proporcionados por [The Movie Database (TMDB)](https://www.themoviedb.org). Este proyecto no está afiliado ni respaldado por TMDB.
+
+Proyecto de demostración con fines de portfolio, sin ánimo de lucro.
+
+---
+
+## 👤 Autor
+
+**Abraham Quirós**
+[GitHub](https://github.com/abrahamquiros)
