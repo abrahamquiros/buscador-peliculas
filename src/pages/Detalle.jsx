@@ -30,15 +30,23 @@ function Detalle() {
     // Acceso seguro al país principal
     const pais = pelicula.production_countries?.[0]?.name || "No disponible";
 
+    // Acceso seguro al trailer
+    const trailer = pelicula.videos?.results?.find(
+        (video) => video.type === "Trailer" && video.site === "YouTube"
+    )
+
+    const trailerKey = trailer?.key
+
     return (
         <div className="max-w-7xl mx-auto px-8">  
             {/* grid-cols-[256px_1fr] para que la primera columna tenga exactamente el ancho de la imagen y la segunda ocupe el resto. */}
-            {/* <div 
+            <div 
                 style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${pelicula.backdrop_path})` }}
-                className='bg-cover bg-center bg-black/40 text-white grid grid-cols-[256px_1fr] gap-x-6 p-4'
-            > */}
-            <div className='bg-black/40 text-white grid grid-cols-[256px_1fr] gap-x-6 p-4'>    
-                <div className='col-span-2 mb-3 flex justify-between items-center'>
+                // bg-blend-multiply: Fusiona la imagen con el color de fondo y bg-black/60: Sube la opacidad a 60% para que la imagen se vea más oscura 
+                className='bg-cover bg-center bg-black/60 bg-blend-multiply text-white grid grid-cols-1 lg:grid-cols-[256px_1fr] gap-x-6 p-4'
+            >
+            {/* <div className='bg-[#1c1c1c] text-white grid grid-cols-1 lg:grid-cols-[256px_1fr] gap-x-6 p-4'>     */}
+                <div className='col-span-1 lg:col-span-2 mb-3 flex justify-between items-center gap-3'>
                     <h1 className='text-2xl font-semibold'>{pelicula.title} ({año})</h1>
                     <button 
                         onClick={() => esFavorito(pelicula.id) ? eliminarFavorito(pelicula.id) : agregarFavorito(pelicula)}
@@ -47,7 +55,7 @@ function Detalle() {
                         {esFavorito(pelicula.id) ? "✅ Quitar de favoritos" : "Añadir a favoritos"}
                     </button>
                 </div>
-                <div className='flex flex-col gap-3 w-64'>              
+                <div className='flex flex-col gap-3 w-64 col-span-1'>              
                     <img 
                         src={pelicula.poster_path ? `${IMG_URL}${pelicula.poster_path}` : "/no-image.png"}
                         alt={pelicula.title}
@@ -55,7 +63,7 @@ function Detalle() {
                         // object-cover para asegura que la imagen no se deforme si no tiene exactamente las proporciones del contenedor.
                     />
                 </div>
-                <div className='flex flex-col gap-2 flex-1'> {/* flex-1 ocupa todo el espacio restante disponible, independientemente del contenido. */}
+                <div className='flex flex-col gap-2 flex-1 col-span-1 mt-4 lg:mt-0'> {/* flex-1 ocupa todo el espacio restante disponible, independientemente del contenido. */}
                     <div>
                         <h1 className='text-xl font-semibold mb-1'>Ficha</h1>
                         <hr className='w-1/2' />
@@ -78,9 +86,8 @@ function Detalle() {
                 <div>
                     <h1 className='text-xl font-semibold mb-1'>Reparto Principal</h1>
                     <hr className='w-1/2' />
-                </div>
-                
-                <div className='grid grid-cols-8 gap-4'>
+                </div>           
+                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 md:gap-4'>
                     {pelicula.credits?.cast?.slice(0, 8).map(actor => (
                         <div key={actor.id} className="border border-gray-300 h-72 rounded-lg shadow-sm overflow-hidden">
                             <img 
@@ -94,9 +101,26 @@ function Detalle() {
                             </div>
                         </div>
                     ))}
-                </div>
-                                
+                </div>                   
             </div>
+            {trailerKey && (
+                <div className="flex flex-col gap-5 mt-6">
+                    <div>
+                        <h1 className='text-xl font-semibold mb-1'>Tráiler</h1>
+                        <hr className='w-1/2' />
+                    </div>
+                    <div className="max-w-4xl">
+                        {trailerKey && (
+                            <iframe
+                                src={`https://www.youtube.com/embed/${trailerKey}`}
+                                title="Tráiler"
+                                allowFullScreen // Para que el usuario pueda poner el video en pantalla completa
+                                className="w-full aspect-video"
+                            />
+                        )}
+                    </div>
+                </div>
+            )}         
         </div> 
     )
 }

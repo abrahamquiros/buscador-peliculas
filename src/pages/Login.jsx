@@ -22,7 +22,7 @@ function Login() {
 
     return (
         <>
-            <h1>Login</h1>
+            <h1 className="text-lg font-semibold w-1/2 p-2 ml-8 mt-6 py-1 bg-gradient-to-r from-red-600 to-transparent">Login</h1>
             <div className="min-h-screen flex items-start justify-center pt-24">
                 <div className="flex flex-col items-center gap-6">
                     <div className="border border-black-500 w-80 p-4 rounded-lg"> 
