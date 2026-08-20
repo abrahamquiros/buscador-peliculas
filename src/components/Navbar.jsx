@@ -33,7 +33,7 @@ function Navbar() {
                             <span className="text-[rgb(249,199,0)]">FILMA</span>CINE
                         </h1>
                         </Link>
-                    <button onClick={handleLogout} className="font-semibold hover:text-[rgb(249,199,0)] cursor-pointer lg:hidden">
+                    <button onClick={handleLogout} className="font-semibold hover:text-[rgb(249,199,0)] hover:bg-white/20 px-2 py-1 rounded-lg cursor-pointer lg:hidden">
                         Cerrar sesión
                     </button>
                 </div>
@@ -55,13 +55,19 @@ function Navbar() {
                     </button>
                 </div>
                 {/* Cerrar sesión solo en escritorio */}
-                <button onClick={handleLogout} className="hidden lg:block font-semibold hover:text-[rgb(249,199,0)] cursor-pointer">Cerrar sesión</button>
+                <button 
+                    onClick={handleLogout} 
+                    className="hidden lg:block font-semibold hover:text-[rgb(249,199,0)] hover:bg-white/20 px-2 py-1 rounded-lg cursor-pointer"
+                >
+                    Cerrar sesión
+                </button>
             </div>
-            <nav className="flex flex-row justify-around items-center lg:px-56 bg-blue-200 p-1">
-                <Link to="/" className="hover:bg-blue-100 hover:text-[rgb(249,199,0)] p-1">Populares</Link>
-                <Link to="/cartelera" className="hover:bg-blue-100 hover:text-[rgb(249,199,0)] p-1">En cartelera</Link>
-                <Link to="/proximamente" className="hover:bg-blue-100 hover:text-[rgb(249,199,0)] p-1">Próximamente</Link>
-                <Link to="/favoritos" className="hover:bg-blue-100 hover:text-[rgb(249,199,0)] p-1">Favoritos</Link>
+            {/* <nav className="flex flex-row justify-around items-center lg:px-56 bg-blue-200 p-1"> */}
+            <nav className="flex flex-row justify-evenly items-center lg:px-76 bg-[#4a87cb] ">
+                <Link to="/" className="font-semibold hover:bg-white/20 hover:text-[rgb(249,199,0)] px-2 py-1">Populares</Link>
+                <Link to="/cartelera" className="font-semibold hover:bg-white/20 hover:text-[rgb(249,199,0)] px-2 py-1">En cartelera</Link>
+                <Link to="/proximamente" className="font-semibold hover:bg-white/20 hover:text-[rgb(249,199,0)] px-2 py-1">Próximamente</Link>
+                <Link to="/favoritos" className="font-semibold hover:bg-white/20 hover:text-[rgb(249,199,0)] px-2 py-1">Favoritos</Link>
             </nav>
         </header>  
     )

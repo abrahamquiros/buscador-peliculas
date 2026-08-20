@@ -26,9 +26,11 @@ function Detalle() {
     // Extraemos el director y guionista de forma segura ANTES del return
     const director = pelicula.credits?.crew?.find(p => p.job === "Director")?.name || "Desconocido";
     const guionista = pelicula.credits?.crew?.find(p => p.job === "Writer")?.name || "Desconocido";
-    
+
     // Acceso seguro al país principal
-    const pais = pelicula.production_countries?.[0]?.name || "No disponible";
+    const codigoPais = pelicula.production_countries?.[0]?.iso_3166_1
+    const regionNames = new Intl.DisplayNames(["es"], { type: "region" })
+    const pais = codigoPais ? regionNames.of(codigoPais) : "No disponible"
 
     // Acceso seguro al trailer
     const trailer = pelicula.videos?.results?.find(

@@ -25,42 +25,46 @@ function App() {
 
   return (
     <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={
-          <RutaProtegida autenticado={autenticado}>
-            <Inicio />
-          </RutaProtegida >
-        } /> 
-        <Route path="/pelicula/:id" element={
-          <RutaProtegida autenticado={autenticado}>
-            <Detalle />
-          </RutaProtegida >
-        } />
-        <Route path="/cartelera" element={
-          <RutaProtegida autenticado={autenticado}>
-            <EnCartelera />
-          </RutaProtegida >
-        } />
-        <Route path="/proximamente" element={
-          <RutaProtegida autenticado={autenticado}>
-            <Proximamente />
-          </RutaProtegida >
-        } />
-        <Route path="/favoritos" element={
-          <RutaProtegida autenticado={autenticado}>
-            <Favoritos />
-          </RutaProtegida >
-        } />
-        <Route path="/Buscar" element={
-          <RutaProtegida autenticado={autenticado}>
-            <Buscar />
-          </RutaProtegida >
-        } />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={
+              <RutaProtegida autenticado={autenticado}>
+                <Inicio />
+              </RutaProtegida >
+            } /> 
+            <Route path="/pelicula/:id" element={
+              <RutaProtegida autenticado={autenticado}>
+                <Detalle />
+              </RutaProtegida >
+            } />
+            <Route path="/cartelera" element={
+              <RutaProtegida autenticado={autenticado}>
+                <EnCartelera />
+              </RutaProtegida >
+            } />
+            <Route path="/proximamente" element={
+              <RutaProtegida autenticado={autenticado}>
+                <Proximamente />
+              </RutaProtegida >
+            } />
+            <Route path="/favoritos" element={
+              <RutaProtegida autenticado={autenticado}>
+                <Favoritos />
+              </RutaProtegida >
+            } />
+            <Route path="/Buscar" element={
+              <RutaProtegida autenticado={autenticado}>
+                <Buscar />
+              </RutaProtegida >
+            } />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       <Footer />
+      </div>
     </BrowserRouter>
   )
 }
