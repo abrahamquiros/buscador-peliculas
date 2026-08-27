@@ -6,7 +6,7 @@ function Favoritos() {
     const { favoritos, eliminarFavorito } = useFavoritos()
     
     return ( 
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
             <p className='text-[rgb(249,199,0)] text-lg font-semibold w-1/2 p-2 ml-8 mt-6 py-1 bg-gradient-to-r from-blue-500 to-transparent'>
                 Películas favoritas
             </p>
@@ -19,7 +19,7 @@ function Favoritos() {
                 </div>
                 
             ) : (
-                <div className='grid grid-cols-5 p-8 gap-x-8 gap-y-8'>
+                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-8 gap-x-8 gap-y-8'>
                     {favoritos.map(pelicula => (
                         <div key={pelicula.id} className="border border-gray-300 min-h-90 rounded-lg shadow-sm flex flex-col justify-between">
                             <Link to={`/pelicula/${pelicula.id}`}>
