@@ -1,10 +1,17 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
-  const [autenticado, setAutenticado] = useState(false)
+  const [autenticado, setAutenticado] = useState(() => {
+    const guardado = localStorage.getItem("sesion")
+    return guardado ? JSON.parse(guardado) : false
+  })
 
+  useEffect(() => {
+      localStorage.setItem("sesion", JSON.stringify(autenticado))
+    }, [autenticado])
+  
   function login() {
     setAutenticado(true)
   }
